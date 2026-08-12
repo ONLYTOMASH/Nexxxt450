@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nextinorder | KTM 450</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #070707;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* ================= HEADER ================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 75px;
+    padding: 0 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(7,7,7,.94);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ff6500;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: #168cff;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 90vh;
+    padding: 80px 7%;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(255,101,0,.23),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(0,120,255,.28),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(0,80,255,.15),
+            transparent 30%
+        ),
+        #070707;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+
+    gap: 60px;
+    align-items: center;
+}
+
+.small-title {
+    color: #ff6500;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 15px;
+}
+
+.hero-text h1 {
+    font-size: clamp(65px,8vw,115px);
+
+    line-height: .85;
+
+    font-weight: 900;
+
+    letter-spacing: -5px;
+}
+
+.hero-text h1 span {
+    color: #ff6500;
+}
+
+
+/* ================= HERO TEXT ================= */
+
+.hero-text p {
+    color: #999;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    max-width: 480px;
+
+    margin-top: 30px;
+}
+
+
+/* ================= BUTTON ================= */
+
+.button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 15px 28px;
+
+    background: #ff6500;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-weight: bold;
+
+    transition: .25s;
+}
+
+.button:hover {
+    background: #168cff;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(0,120,255,.25);
+}
+
+
+/* ================= VIDEO ================= */
+
+.video-container {
+    width: 100%;
+
+    background: #101010;
+
+    border: 1px solid #292929;
+
+    border-radius: 18px;
+
+    padding: 12px;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.6),
+        0 0 40px rgba(0,100,255,.08);
+
+    transition: .3s;
+}
+
+.video-container:hover {
+    border-color: #168cff;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.6),
+        0 0 40px rgba(0,120,255,.15);
+}
+
+.instagram-media {
+    margin: 0 !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    border-radius: 12px !important;
+}
+
+
+/* ================= CREATOR ================= */
+
+.creator {
+    padding: 100px 7%;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0,120,255,.13),
+            transparent 45%
+        ),
+        #0c0c0c;
+}
+
+.creator-label {
+    color: #168cff;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.creator h2 {
+    font-size: clamp(40px,6vw,70px);
+
+    margin-bottom: 15px;
+
+    font-weight: 900;
+}
+
+.creator h2 span {
+    color: #ff6500;
+}
+
+.creator p {
+    color: #888;
+
+    margin-bottom: 35px;
+}
+
+
+/* ================= SOCIAL BUTTONS ================= */
+
+.socials {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.social {
+    min-width: 180px;
+
+    padding: 16px 25px;
+
+    border-radius: 8px;
+
+    background: #151515;
+
+    border: 1px solid #303030;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: .25s;
+}
+
+.social:hover {
+    border-color: #168cff;
+
+    transform: translateY(-4px);
+
+    background: #1b1b1b;
+
+    box-shadow:
+        0 8px 25px rgba(0,120,255,.12);
+}
+
+
+/* ================= INFO ================= */
+
+.info {
+    padding: 90px 7%;
+
+    background:
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(0,120,255,.08),
+            transparent 35%
+        );
+}
+
+.info-container {
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 20px;
+}
+
+.info-card {
+    padding: 30px;
+
+    background: #111;
+
+    border: 1px solid #292929;
+
+    border-radius: 12px;
+
+    transition: .25s;
+}
+
+.info-card:hover {
+    border-color: #168cff;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 30px rgba(0,120,255,.08);
+}
+
+.info-card h3 {
+    color: #ff6500;
+
+    margin-bottom: 12px;
+}
+
+.info-card p {
+    color: #888;
+
+    line-height: 1.6;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #555;
+}
+
+footer span {
+    color: #ff6500;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px) {
+
+    header {
+        padding: 0 20px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .info-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media(max-width:500px) {
+
+    .logo {
+        font-size: 19px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero-text h1 {
+        font-size: 65px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        KTM <span>450</span>
+    </div>
+
+    <nav>
+
+        <a href="#motorka">
+            Motorka
+        </a>
+
+        <a href="#youtuber">
+            Nextinorder
+        </a>
+
+        <a
+            href="https://www.nexxxtshop.cz/"
+            target="_blank">
+
+            Shop
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section
+    class="hero"
+    id="motorka">
+
+    <div class="hero-content">
+
+
+        <!-- LEVÁ STRANA -->
+
+        <div class="hero-text">
+
+            <div class="small-title">
+                SUPERMOTO
+            </div>
+
+
+            <h1>
+                KTM
+                <span>450</span>
+            </h1>
+
+
+            <p>
+                Motorka inspirovaná KTM 450
+                a tvorbou Nextinorder.
+                Podívej se na jeho video
+                a sleduj jeho další tvorbu.
+            </p>
+
+
+            <a
+                href="#youtuber"
+                class="button">
+
+                NEXTINORDER ↓
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ================= INSTAGRAM REEL ================= -->
+
+        <div class="video-container">
+
+            <blockquote
+                class="instagram-media"
+                data-instgrm-permalink="https://www.instagram.com/reel/DaQZLnUi7H5/"
+                data-instgrm-version="14">
+
+            </blockquote>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script
+async
+src="https://www.instagram.com/embed.js">
+</script>
+
+
+
+<!-- ================= CREATOR ================= -->
+
+<section
+    class="creator"
+    id="youtuber">
+
+    <div class="creator-label">
+        CREATOR
+    </div>
+
+
+    <h2>
+        <span>Nextinorder</span>
+    </h2>
+
+
+    <p>
+        Sleduj Nextinorder na sociálních sítích.
+    </p>
+
+
+    <div class="socials">
+
+
+        <!-- YOUTUBE -->
+
+        <a
+            class="social"
+            href="https://www.youtube.com/@Nextinorder"
+            target="_blank">
+
+            ▶ YouTube
+
+        </a>
+
+
+        <!-- INSTAGRAM -->
+
+        <a
+            class="social"
+            href="https://www.instagram.com/_next1k_/"
+            target="_blank">
+
+            ◎ Instagram
+
+        </a>
+
+
+        <!-- SHOP -->
+
+        <a
+            class="social"
+            href="https://www.nexxxtshop.cz/"
+            target="_blank">
+
+            🛒 E-shop
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= INFO ================= -->
+
+<section class="info">
+
+    <div class="info-container">
+
+
+        <div class="info-card">
+
+            <h3>
+                🏍️ KTM 450
+            </h3>
+
+            <p>
+                Agresivní supermoto vzhled je
+                originální a dravý.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                🎥 Nextinorder
+            </h3>
+
+            <p>
+                Podívej se na jeho videa
+                a sleduj jeho sociální sítě.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                🛒 NexXxT Shop
+            </h3>
+
+            <p>
+                Navštiv oficiální e-shop
+                a prohlédni si aktuální merch.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026
+    <span>Nextinorder</span>
+    • KTM 450
+
+</footer>
+
+
+</body>
+</html>
